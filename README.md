@@ -1,6 +1,24 @@
 # primefaces-arquillian
 PrimeFaces testing support for Arquillian, based on Arquillian Graphene and the concept of page ojects / fragements.
 
+### Compatibility
+Only tested on PrimeFaces 6.2+.
+
+### Status
+Currently only the following components are implemented:
+- AccordionPanel
+- CommandButton
+- CommandLink
+- InputNumber
+- InputSwitch
+- InputText
+- InputTextarea
+- Panel
+- SelectOneButton
+- SelectOneMenu
+
+Contributions are very welcome ;)
+
 ### Usage
 
 Example view: 
