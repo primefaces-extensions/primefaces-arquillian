@@ -34,7 +34,10 @@ Example test:
 ```java
     @Test
     public void myFirstTest(@InitialPage IndexPage index) throws InterruptedException {
+        assertDisplayed(index.getManufacturer());
+
         index.getManufacturer().select("BMW");
+        Assert.assertTrue(index.getManufacturer().isSelected("BMW"));
     }
 ```
 
