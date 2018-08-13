@@ -1,6 +1,5 @@
 # primefaces-arquillian
-PrimeFaces testing support for Arquillian.
-It's based on Arquillian Graphene and heavily reuses the conecpt of "page fragments".
+PrimeFaces testing support for Arquillian, based on Arquillian Graphene and the concept of page ojects / fragements.
 
 ### Usage
 
