@@ -46,6 +46,7 @@ public class IndexPageTest extends AbstractPrimePageTest {
         Assert.assertTrue(index.isAt());
         assertNotDisplayed(index.getCar());
         
+        // just to follow the browser with a human eye for the showcase :D - not need in your real tests
         Thread.sleep(2000);
         
         // select manufacturer
@@ -53,12 +54,14 @@ public class IndexPageTest extends AbstractPrimePageTest {
         index.getManufacturer().select("BMW");
         Assert.assertTrue(index.getManufacturer().isSelected("BMW"));
         
+        // just to follow the browser with a human eye for the showcase :D - not need in your real tests
         Thread.sleep(2000);
         
         // type car
         assertDisplayed(index.getCar());
         index.getCar().setValue("E30 M3");
         
+        // just to follow the browser with a human eye for the showcase :D - not need in your real tests
         Thread.sleep(2000);
     }
 }
