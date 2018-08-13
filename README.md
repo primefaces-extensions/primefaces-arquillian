@@ -1,5 +1,5 @@
 # primefaces-arquillian
-PrimeFaces testing support for Arquillian, based on Arquillian Graphene and the concept of page ojects / fragements.
+PrimeFaces testing support based on Selenium, Arquillian, Arquillian Graphene and the concept of page ojects / fragements.
 
 ### Compatibility
 Only tested on PrimeFaces 6.2+.
