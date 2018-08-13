@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <title>Index</title>
+    </h:head>
+    <h:body>
+
+        <h:form id="form">
+
+            <p:selectOneMenu id="manufacturer" value="#{indexController.manufacturer}">
+                <p:ajax process="@this" update="@form" />
+                <f:selectItem itemValue="please select" itemLabel="#{null}" noSelectionOption="true" />
+                <f:selectItem itemValue="BMW" itemLabel="BMW" />
+                <f:selectItem itemValue="VW" itemLabel="VW" />
+                <f:selectItem itemValue="Mercedes" itemLabel="Mercedes" />
+            </p:selectOneMenu>
+
+            #{indexController.manufacturer}
+
+            <p:inputText id="car" value="#{indexController.car}" rendered="#{not empty indexController.manufacturer}" />
+
+        </h:form>
+
+    </h:body>
+</html>
