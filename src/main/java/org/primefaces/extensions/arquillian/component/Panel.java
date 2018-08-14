@@ -17,14 +17,14 @@ package org.primefaces.extensions.arquillian.component;
 
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.request.RequestGuardException;
-import org.primefaces.extensions.arquillian.AbstractPrimePageFragment;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.PrimeExpectedConditions;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
+import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
-public abstract class Panel extends AbstractPrimePageFragment
+public abstract class Panel extends AbstractComponent
 {
     @FindBy(className = "ui-panel-titlebar")
     private WebElement titlebar;

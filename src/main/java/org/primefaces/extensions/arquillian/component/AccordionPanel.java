@@ -5,13 +5,13 @@ import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.primefaces.extensions.arquillian.AbstractPrimePageFragment;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 
-public abstract class AccordionPanel extends AbstractPrimePageFragment
+public abstract class AccordionPanel extends AbstractComponent
 {
     @FindBy(css = ".ui-accordion-header")
     private List<GrapheneElement> accordionHeaders;
