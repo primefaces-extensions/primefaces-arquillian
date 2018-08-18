@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SelectOneButton extends AbstractInputComponent {
+
     @FindBy(css = ".ui-button")
     private List<WebElement> options;
 

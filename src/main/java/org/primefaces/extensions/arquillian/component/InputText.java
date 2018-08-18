@@ -36,6 +36,7 @@ public abstract class InputText extends AbstractInputComponent {
     public void setValue(Serializable value) {
         getInput().clear();
         getInput().sendKeys(value.toString());
+        
         if (isOnchangeAjaxified()) {
             try {
                 Graphene.guardAjax(getInput()).sendKeys(Keys.TAB);
