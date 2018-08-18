@@ -17,7 +17,7 @@ import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 public abstract class AccordionPanel extends AbstractComponent
 {
     @FindBy(css = ".ui-accordion-header")
-    private List<GrapheneElement> accordionHeaders;
+    private List<GrapheneElement> headers;
 
     /**
      * Toggle the tab denoted by the specified index.
@@ -30,7 +30,7 @@ public abstract class AccordionPanel extends AbstractComponent
         {
             try
             {
-                Graphene.guardAjax(accordionHeaders.get(index)).click();
+                Graphene.guardAjax(headers.get(index)).click();
             }
             catch (RequestGuardException e)
             {
@@ -39,7 +39,7 @@ public abstract class AccordionPanel extends AbstractComponent
         }
         else
         {
-            accordionHeaders.get(index).click();
+            headers.get(index).click();
         }
     }
 
@@ -51,7 +51,7 @@ public abstract class AccordionPanel extends AbstractComponent
      */
     public String getTabHeader(int index)
     {
-        return accordionHeaders.get(index).getText();
+        return headers.get(index).getText();
     }
 
     /**
@@ -61,7 +61,7 @@ public abstract class AccordionPanel extends AbstractComponent
      */
     public List<String> getTabHeaders()
     {
-        return accordionHeaders.stream()
+        return headers.stream()
             .map(WebElement::getText)
             .collect(Collectors.toList());
     }
