@@ -20,11 +20,11 @@ public abstract class AccordionPanel extends AbstractComponent
     private List<GrapheneElement> accordionHeaders;
 
     /**
-     * Expands the tab denoted by the specified index.
+     * Toggle the tab denoted by the specified index.
      * 
      * @param index the index of the tab to expand
      */
-    public void expandTab(int index)
+    public void toggleTab(int index)
     {
         if (PrimeGraphene.hasAjaxBehavior(root, "tabChange"))
         {
