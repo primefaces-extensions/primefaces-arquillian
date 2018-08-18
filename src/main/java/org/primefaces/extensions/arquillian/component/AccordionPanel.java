@@ -11,11 +11,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 
+/**
+ * Graphene extensions for a PrimeFaces {@code p:accordionPanel}.
+ */
 public abstract class AccordionPanel extends AbstractComponent
 {
     @FindBy(css = ".ui-accordion-header")
     private List<GrapheneElement> accordionHeaders;
 
+    /**
+     * Changes the currently expanded tab to the tab denoted by the specified
+     * index.
+     * @param index the index of the tab to change to
+     */
     public void changeTab(int index)
     {
         if (PrimeGraphene.hasAjaxBehavior(root, "tabChange"))
@@ -35,11 +43,20 @@ public abstract class AccordionPanel extends AbstractComponent
         }
     }
 
+    /**
+     * Provides the header of an accordion panel tab at the specified index.
+     * @param index the index
+     * @return the header of the accordion panel tab
+     */
     public String getTabHeader(int index)
     {
         return accordionHeaders.get(index).getText();
     }
 
+    /**
+     * Provides the headers of the accordion panel tabs in their order.
+     * @return a copy of the headers in order
+     */
     public List<String> getTabHeaders()
     {
         return accordionHeaders.stream()
