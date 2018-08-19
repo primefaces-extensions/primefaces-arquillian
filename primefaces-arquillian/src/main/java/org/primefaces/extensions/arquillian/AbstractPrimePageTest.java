@@ -30,6 +30,7 @@ import org.jboss.arquillian.graphene.page.Location;
 
 @RunWith(Arquillian.class)
 @RunAsClient
+@SuppressWarnings("PMD.TooManyMethods")
 public abstract class AbstractPrimePageTest {
 
     @Drone
@@ -108,7 +109,7 @@ public abstract class AbstractPrimePageTest {
             Assert.assertEquals(fullPath, url.getPath());
         }
         catch (MalformedURLException e) {
-            throw new RuntimeException("Malformed url: " + webDriver.getCurrentUrl(), e);
+            throw new IllegalStateException("Malformed url: " + webDriver.getCurrentUrl(), e);
         }
     }
 }
