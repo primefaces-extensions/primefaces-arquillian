@@ -15,6 +15,8 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.WebElement;
@@ -22,9 +24,9 @@ import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractInputComponent;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Component wrapper for a PrimeFaces {@code p:selectOneButton}.
+ */
 public abstract class SelectOneButton extends AbstractInputComponent {
 
     @FindBy(css = ".ui-button")
@@ -58,7 +60,7 @@ public abstract class SelectOneButton extends AbstractInputComponent {
 
         click(options.get(nextIndex));
     }
-    
+
     public void select(String label) {
         if (!isSelected(label)) {
             for (WebElement element : options) {
@@ -83,12 +85,10 @@ public abstract class SelectOneButton extends AbstractInputComponent {
         if (PrimeGraphene.hasAjaxBehavior(root, "change") || PrimeGraphene.hasAjaxBehavior(root, "onchange")) {
             try {
                 Graphene.guardAjax(element).click();
-            }
-            catch (RequestGuardException e) {
+            } catch (RequestGuardException e) {
                 PrimeGraphene.handleRequestGuardException(e);
             }
-        }
-        else {
+        } else {
             element.click();
         }
     }

@@ -15,16 +15,20 @@
  */
 package org.primefaces.extensions.arquillian;
 
+import java.net.URL;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.Location;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.openqa.selenium.WebDriver;
 
-import java.net.URL;
+/**
+ * A base page class.
+ */
+@SuppressWarnings("PMD.AbstractClassWithoutAbstractMethod")
+    //abstract avoids initialization here only
+public class AbstractPrimePage {
 
-public abstract class AbstractPrimePage {
-    
     @Drone
     protected WebDriver webDriver;
 

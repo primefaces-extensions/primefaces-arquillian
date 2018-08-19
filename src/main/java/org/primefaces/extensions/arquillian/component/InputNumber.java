@@ -18,9 +18,12 @@ package org.primefaces.extensions.arquillian.component;
 import org.openqa.selenium.WebElement;
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
+/**
+ * Component wrapper for a PrimeFaces {@code p:inputNumber}.
+ */
 public abstract class InputNumber extends InputText {
-    
-    @FindByParentPartialId(value = "_input")
+
+    @FindByParentPartialId("_input")
     private WebElement input;
 
     @Override

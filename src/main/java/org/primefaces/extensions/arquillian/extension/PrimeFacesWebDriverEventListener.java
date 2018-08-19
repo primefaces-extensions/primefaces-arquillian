@@ -19,8 +19,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 
+/**
+ * Handles PrimeFaces specifics while interacting with Graphene.
+ */
 public class PrimeFacesWebDriverEventListener extends AbstractWebDriverEventListener {
-    
+
     @Override
     public void afterNavigateTo(String url, WebDriver driver) {
         PrimeGraphene.disableAnimations();

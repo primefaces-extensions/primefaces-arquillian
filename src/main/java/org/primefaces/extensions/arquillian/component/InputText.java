@@ -15,20 +15,22 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
-import org.primefaces.extensions.arquillian.component.base.AbstractInputComponent;
-
 import java.io.Serializable;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.Keys;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
+import org.primefaces.extensions.arquillian.component.base.AbstractInputComponent;
 
+/**
+ * Component wrapper for a PrimeFaces {@code p:inputText}.
+ */
 public abstract class InputText extends AbstractInputComponent {
-    
+
     protected boolean isOnchangeAjaxified() {
         return PrimeGraphene.isAjaxScript(getInput().getAttribute("onchange"));
     }
-    
+
     public String getValue() {
         return getInput().getAttribute("value");
     }
@@ -36,16 +38,14 @@ public abstract class InputText extends AbstractInputComponent {
     public void setValue(Serializable value) {
         getInput().clear();
         getInput().sendKeys(value.toString());
-        
+
         if (isOnchangeAjaxified()) {
             try {
                 Graphene.guardAjax(getInput()).sendKeys(Keys.TAB);
-            }
-            catch (RequestGuardException e) {
+            } catch (RequestGuardException e) {
                 PrimeGraphene.handleRequestGuardException(e);
             }
-        }
-        else {
+        } else {
             getInput().sendKeys(Keys.TAB);
         }
     }

@@ -15,6 +15,11 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
+/**
+ * Component wrapper for a PrimeFaces {@code p:inputTextArea}.
+ */
+@SuppressWarnings("PMD.AbstractClassWithoutAnyMethod")
+    //@TODO: is this really necessary?
 public abstract class InputTextarea extends InputText {
 
 }

@@ -15,13 +15,12 @@
  */
 package org.primefaces.extensions.arquillian.extension.findby;
 
-import org.jboss.arquillian.graphene.spi.findby.ImplementsLocationStrategy;
-import org.openqa.selenium.support.FindBy;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import org.jboss.arquillian.graphene.spi.findby.ImplementsLocationStrategy;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Alternative {@link FindBy} annotation, which should only be used in page fragments.

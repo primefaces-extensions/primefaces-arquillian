@@ -15,6 +15,7 @@
  */
 package org.primefaces.extensions.arquillian;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jboss.arquillian.drone.api.annotation.Default;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.context.GrapheneContext;
@@ -25,10 +26,13 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PrimeGraphene extends Graphene {
-    
-    private PrimeGraphene() {
+/**
+ * PrimeFaces specific Graphene extension.
+ */
+public final class PrimeGraphene extends Graphene {
 
+    private PrimeGraphene() {
+        super();
     }
 
     public static void disableAnimations() {
@@ -39,6 +43,9 @@ public class PrimeGraphene extends Graphene {
         executeScript("$(function() { $.fx.off = false; });");
     }
 
+    @SuppressWarnings("PMD.SystemPrintln")
+        //@TODO: this should be replace with a slf4j-compatiable logging
+        //framework, like logback
     public static void handleRequestGuardException(RequestGuardException e) {
         System.err.println("Expected " + e.getRequestExpected() + " request, " + e.getRequestDone() + " was done instead. Ignoring.");
     }
@@ -54,7 +61,7 @@ public class PrimeGraphene extends Graphene {
 
     public static boolean hasCssClass(WebElement element, String cssClass) {
         String classes = element.getAttribute("class");
-        if (classes == null || classes.trim().isEmpty()) {
+        if (classes == null || StringUtils.isBlank(classes)) {
             return false;
         }
 
@@ -67,18 +74,14 @@ public class PrimeGraphene extends Graphene {
         return false;
     }
 
-    
-    
-    
-
     public static boolean isAjaxScript(String script) {
-        if (script == null || script.trim().isEmpty()) {
+        if (script == null || StringUtils.isBlank(script)) {
             return false;
         }
 
         return script.contains("PrimeFaces.ab(") || script.contains("pf.ab(") || script.contains("mojarra.ab(") || script.contains("jsf.ajax.request");
     }
-    
+
     public static boolean hasAjaxBehavior(WebElement element, String behavior) {
         if (!hasBehavior(element, behavior)) {
             return false;
@@ -111,19 +114,12 @@ public class PrimeGraphene extends Graphene {
         Object result = executeScript("return PrimeFaces.getWidgetById('" + id + "');");
         return result != null;
     }
-    
-    
-    
-    
-    
-    
-    
+
     public static boolean isElementPresent(By by) {
         try {
             getWebDriver().findElement(by);
             return true;
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -132,8 +128,7 @@ public class PrimeGraphene extends Graphene {
         try {
             element.isDisplayed(); // just any method to check if NoSuchElementException will be thrown
             return true;
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -141,8 +136,7 @@ public class PrimeGraphene extends Graphene {
     public static boolean isElementDisplayed(By by) {
         try {
             return getWebDriver().findElement(by).isDisplayed();
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -150,8 +144,7 @@ public class PrimeGraphene extends Graphene {
     public static boolean isElementDisplayed(WebElement element) {
         try {
             return element.isDisplayed();
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -159,8 +152,7 @@ public class PrimeGraphene extends Graphene {
     public static boolean isElementEnabled(By by) {
         try {
             return getWebDriver().findElement(by).isEnabled();
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -168,8 +160,7 @@ public class PrimeGraphene extends Graphene {
     public static boolean isElementEnabled(WebElement element) {
         try {
             return element.isEnabled();
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
