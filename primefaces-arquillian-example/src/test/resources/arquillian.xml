@@ -16,13 +16,10 @@
             <property name="singleDeploymentByArchiveName">true</property>
             <property name="cleanOnStartUp">true</property>
             <property name="quickSession">true</property>
-
             <property name="properties">
                 org.apache.tomee.loader.TomEEJarScanner.scanClassPath = false
                 org.apache.tomee.loader.TomEEJarScanner.scanBootstrapClassPath = false
             </property>
         </configuration>
     </container>
-    
-    
 </arquillian>
