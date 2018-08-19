@@ -20,7 +20,7 @@ import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartial
 
 public abstract class InputNumber extends InputText {
     
-    @FindByParentPartialId(value = "_input")
+    @FindByParentPartialId("_input")
     private WebElement input;
 
     @Override

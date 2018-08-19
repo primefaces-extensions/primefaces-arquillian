@@ -15,6 +15,7 @@
  */
 package org.primefaces.extensions.arquillian;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jboss.arquillian.drone.api.annotation.Default;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.context.GrapheneContext;
@@ -25,10 +26,10 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PrimeGraphene extends Graphene {
+public final class PrimeGraphene extends Graphene {
     
     private PrimeGraphene() {
-
+        super();
     }
 
     public static void disableAnimations() {
@@ -54,7 +55,7 @@ public class PrimeGraphene extends Graphene {
 
     public static boolean hasCssClass(WebElement element, String cssClass) {
         String classes = element.getAttribute("class");
-        if (classes == null || classes.trim().isEmpty()) {
+        if (classes == null || StringUtils.isBlank(classes)) {
             return false;
         }
 
@@ -67,12 +68,8 @@ public class PrimeGraphene extends Graphene {
         return false;
     }
 
-    
-    
-    
-
     public static boolean isAjaxScript(String script) {
-        if (script == null || script.trim().isEmpty()) {
+        if (script == null || StringUtils.isBlank(script)) {
             return false;
         }
 
@@ -111,13 +108,7 @@ public class PrimeGraphene extends Graphene {
         Object result = executeScript("return PrimeFaces.getWidgetById('" + id + "');");
         return result != null;
     }
-    
-    
-    
-    
-    
-    
-    
+
     public static boolean isElementPresent(By by) {
         try {
             getWebDriver().findElement(by);

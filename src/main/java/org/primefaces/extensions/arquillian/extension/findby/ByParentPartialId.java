@@ -28,13 +28,15 @@ import org.openqa.selenium.WebElement;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 public class ByParentPartialId extends By {
     
-    private String partialId;
-    private boolean searchFromRoot;
+    private final String partialId;
+    private final boolean searchFromRoot;
 
     public ByParentPartialId(String partialId, boolean searchFromRoot) {
+        super();
         Validate.notNull(partialId, "Cannot find elements when partialId is null!");
         this.partialId = partialId;
         this.searchFromRoot = searchFromRoot;
@@ -50,7 +52,7 @@ public class ByParentPartialId extends By {
                 WebElement parent = (WebElement) searchContext;
 
                 String parentId = parent.getAttribute("id");
-                if (parentId == null || parentId.trim().isEmpty()) {
+                if (parentId == null || StringUtils.isBlank(parentId)) {
                     throw new WebDriverException("Id of parent element is null or empty!");
                 }
 

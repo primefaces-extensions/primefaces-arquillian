@@ -26,9 +26,6 @@ import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartial
 
 public abstract class Panel extends AbstractComponent {
 
-    @FindBy(className = "ui-panel-titlebar")
-    private WebElement titlebar;
-
     @FindByParentPartialId("_toggler")
     private WebElement toggler;
 

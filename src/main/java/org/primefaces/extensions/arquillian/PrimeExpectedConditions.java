@@ -20,10 +20,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class PrimeExpectedConditions {
+public final class PrimeExpectedConditions {
     
     private PrimeExpectedConditions() {
-        
+        super();
     }
 
     public static ExpectedCondition<Boolean> jQueryNotActive() {
