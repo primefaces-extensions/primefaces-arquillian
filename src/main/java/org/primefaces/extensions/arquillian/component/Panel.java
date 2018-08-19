@@ -24,8 +24,8 @@ import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
-public abstract class Panel extends AbstractComponent
-{
+public abstract class Panel extends AbstractComponent {
+
     @FindBy(className = "ui-panel-titlebar")
     private WebElement titlebar;
 
@@ -35,21 +35,16 @@ public abstract class Panel extends AbstractComponent
     @FindBy(className = "ui-panel-content")
     private WebElement content;
 
-    public void toggle()
-    {
-        if (PrimeGraphene.hasAjaxBehavior(root, "toggle"))
-        {
-            try
-            {
+    public void toggle() {
+        if (PrimeGraphene.hasAjaxBehavior(root, "toggle")) {
+            try {
                 Graphene.guardAjax(toggler).click();
             }
-            catch (RequestGuardException e)
-            {
+            catch (RequestGuardException e) {
                 PrimeGraphene.handleRequestGuardException(e);
             }
         }
-        else
-        {
+        else {
             toggler.click();
         }
 
