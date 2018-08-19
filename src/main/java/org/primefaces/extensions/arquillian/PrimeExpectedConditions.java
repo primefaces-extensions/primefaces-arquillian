@@ -20,10 +20,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class PrimeExpectedConditions {
-    
+/**
+ * A collection of expected conditions for Selenium which are specific for
+ * PrimeFaces.
+ */
+@SuppressWarnings("PMD.ClassNamingConventions")
+    //PMD want to enforce the utility class to be name ...Utils/Helper, but
+    //this name is better
+public final class PrimeExpectedConditions {
+
     private PrimeExpectedConditions() {
-        
     }
 
     public static ExpectedCondition<Boolean> jQueryNotActive() {

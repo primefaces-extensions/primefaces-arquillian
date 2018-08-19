@@ -15,6 +15,9 @@
  */
 package org.primefaces.extensions.arquillian.extension.findby;
 
+import java.lang.annotation.Annotation;
+import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.jboss.arquillian.core.spi.Validate;
 import org.jboss.arquillian.drone.api.annotation.Default;
 import org.jboss.arquillian.graphene.context.GrapheneContext;
@@ -26,15 +29,16 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
-import java.lang.annotation.Annotation;
-import java.util.List;
-
+/**
+ * PrimeFaces extensions of Selenium's {@link By}.
+ */
 public class ByParentPartialId extends By {
-    
-    private String partialId;
-    private boolean searchFromRoot;
+
+    private final String partialId;
+    private final boolean searchFromRoot;
 
     public ByParentPartialId(String partialId, boolean searchFromRoot) {
+        super();
         Validate.notNull(partialId, "Cannot find elements when partialId is null!");
         this.partialId = partialId;
         this.searchFromRoot = searchFromRoot;
@@ -50,25 +54,22 @@ public class ByParentPartialId extends By {
                 WebElement parent = (WebElement) searchContext;
 
                 String parentId = parent.getAttribute("id");
-                if (parentId == null || parentId.trim().isEmpty()) {
+                if (parentId == null || StringUtils.isBlank(parentId)) {
                     throw new WebDriverException("Id of parent element is null or empty!");
                 }
 
                 By by = By.id(parentId + partialId);
                 if (searchFromRoot) {
                     elements = grapheneContext.getWebDriver(Default.class).findElements(by);
-                }
-                else {
+                } else {
                     elements = parent.findElements(by);
                 }
-            }
-            else {
+            } else {
                 throw new WebDriverException(
                         "Cannot determine the SearchContext you are passing to the findBy/s method! It is not instance of WebDriver nor WebElement! It is: "
                         + searchContext);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new WebDriverException("Can not locate element using partialId " + partialId
                     + " Check out whether it is correct!", ex);
         }
@@ -92,14 +93,16 @@ public class ByParentPartialId extends By {
     private GrapheneContext getGrapheneContext(SearchContext searchContext) {
         if (searchContext instanceof GrapheneProxyInstance) {
             return ((GrapheneProxyInstance) searchContext).getGrapheneContext();
-        }
-        else {
+        } else {
             return GrapheneContext.lastContext();
         }
     }
 
+    /**
+     * A partial ID loation strategy implementation.
+     */
     public static class ParentPartialIdLocationStrategy implements LocationStrategy {
-        
+
         @Override
         public ByParentPartialId fromAnnotation(Annotation annotation) {
             FindByParentPartialId findBy = (FindByParentPartialId) annotation;

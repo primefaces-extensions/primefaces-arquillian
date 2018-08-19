@@ -21,8 +21,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 
+/**
+ * Component wrapper for a PrimeFaces {@code p:commandLink}.
+ */
 public abstract class CommandLink extends AbstractComponent {
-    
+
     @Override
     public void click() {
         Graphene.waitGui().until(ExpectedConditions.elementToBeClickable(root));
@@ -30,19 +33,15 @@ public abstract class CommandLink extends AbstractComponent {
         if (PrimeGraphene.isAjaxScript(root.getAttribute("onclick"))) {
             try {
                 Graphene.guardAjax(root).click();
-            }
-            catch (RequestGuardException e) {
+            } catch (RequestGuardException e) {
                 PrimeGraphene.handleRequestGuardException(e);
             }
-        }
-        else if ("_blank".equals(root.getAttribute("target"))) {
+        } else if ("_blank".equals(root.getAttribute("target"))) {
             root.click();
-        }
-        else {
+        } else {
             try {
                 Graphene.guardHttp(root).click();
-            }
-            catch (RequestGuardException e) {
+            } catch (RequestGuardException e) {
                 PrimeGraphene.handleRequestGuardException(e);
             }
         }

@@ -18,8 +18,11 @@ package org.primefaces.extensions.arquillian.component.base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+/**
+ * A base component extension of {@code GrapheneElement} for input components.
+ */
 public abstract class AbstractInputComponent extends AbstractComponent {
-    
+
     protected WebElement getInput() {
         return root;
     }

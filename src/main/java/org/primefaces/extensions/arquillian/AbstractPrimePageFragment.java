@@ -20,6 +20,9 @@ import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.graphene.fragment.Root;
 import org.openqa.selenium.WebDriver;
 
+/**
+ * A base component extension of {@code GrapheneElement} for page segments.
+ */
 public abstract class AbstractPrimePageFragment implements GrapheneElement {
 
     @Drone

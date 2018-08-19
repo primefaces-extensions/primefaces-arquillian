@@ -24,17 +24,20 @@ import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractInputComponent;
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
+/**
+ * Component wrapper for a PrimeFaces {@code p:selectOneMenu}.
+ */
 public abstract class SelectOneMenu extends AbstractInputComponent {
-    
-    @FindByParentPartialId(value = "_label")
+
+    @FindByParentPartialId("_label")
     private WebElement label;
-    
+
     @FindByParentPartialId(value = "_items", searchFromRoot = true)
     private WebElement items;
-    
-    @FindByParentPartialId(value = "_input")
+
+    @FindByParentPartialId("_input")
     private WebElement input;
-    
+
     @FindByParentPartialId(value = "_panel", searchFromRoot = true)
     private WebElement panel;
 
@@ -43,8 +46,7 @@ public abstract class SelectOneMenu extends AbstractInputComponent {
             label.click();
 
             PrimeGraphene.waitGui().until(PrimeExpectedConditions.invisibleAndAnimationComplete(panel));
-        }
-        else {
+        } else {
             label.click();
 
             PrimeGraphene.waitGui().until(PrimeExpectedConditions.visibileAndAnimationComplete(panel));
@@ -108,12 +110,10 @@ public abstract class SelectOneMenu extends AbstractInputComponent {
         if (PrimeGraphene.isAjaxScript(input.getAttribute("onchange"))) {
             try {
                 Graphene.guardAjax(element).click();
-            }
-            catch (RequestGuardException e) {
+            } catch (RequestGuardException e) {
                 PrimeGraphene.handleRequestGuardException(e);
             }
-        }
-        else {
+        } else {
             element.click();
         }
     }

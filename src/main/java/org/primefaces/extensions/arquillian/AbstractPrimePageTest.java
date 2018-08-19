@@ -15,6 +15,7 @@
  */
 package org.primefaces.extensions.arquillian;
 
+import java.net.URL;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.junit.Arquillian;
@@ -24,12 +25,15 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.net.URL;
-
+/**
+ * The base of a Graphene workflow.
+ */
 @RunWith(Arquillian.class)
 @RunAsClient
+@SuppressWarnings("PMD.AbstractClassWithoutAbstractMethod")
+    //abstract avoids initialization here only
 public abstract class AbstractPrimePageTest {
-    
+
     @Drone
     protected WebDriver webDriver;
 

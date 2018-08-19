@@ -23,9 +23,12 @@ import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractInputComponent;
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
+/**
+ * Component wrapper for a PrimeFaces {@code p:inputSwtich}.
+ */
 public abstract class InputSwitch extends AbstractInputComponent {
-    
-    @FindByParentPartialId(value = "_input")
+
+    @FindByParentPartialId("_input")
     private WebElement input;
 
     @Override
@@ -35,12 +38,10 @@ public abstract class InputSwitch extends AbstractInputComponent {
         if (PrimeGraphene.isAjaxScript(root.getAttribute("onchange"))) {
             try {
                 Graphene.guardAjax(root).click();
-            }
-            catch (RequestGuardException e) {
+            } catch (RequestGuardException e) {
                 PrimeGraphene.handleRequestGuardException(e);
             }
-        }
-        else {
+        } else {
             root.click();
         }
     }

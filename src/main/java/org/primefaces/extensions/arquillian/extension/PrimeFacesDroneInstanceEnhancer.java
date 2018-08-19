@@ -15,16 +15,18 @@
  */
 package org.primefaces.extensions.arquillian.extension;
 
+import java.lang.annotation.Annotation;
 import org.jboss.arquillian.drone.spi.DroneInstanceEnhancer;
 import org.jboss.arquillian.drone.spi.InstanceOrCallableInstance;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
-import java.lang.annotation.Annotation;
-
+/**
+ * Drone extension enhancements.
+ */
 public class PrimeFacesDroneInstanceEnhancer implements DroneInstanceEnhancer<WebDriver> {
-    
+
     protected WebDriverEventListener listener;
 
     @Override
