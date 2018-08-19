@@ -18,9 +18,8 @@ package org.primefaces.extensions.arquillian.example;
 import java.io.File;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.graphene.page.InitialPage;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.importer.ZipImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.embedded.EmbeddedMaven;
 import org.junit.Assert;
 import org.junit.Test;
 import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
@@ -30,14 +29,26 @@ public class IndexPageTest extends AbstractPrimePageTest {
     @Deployment(testable = false)
     public static WebArchive createDeployment()
     {
-        // get the builded WAR from the target dir
-        File targetDir = new File("target/");
-        String warName = targetDir.list((dir, name) -> name.endsWith(".war"))[0];
-        File warFile = new File(targetDir.getAbsolutePath() + "/" + warName);
-
-        return ShrinkWrap.create(ZipImporter.class, warName)
-            .importFrom(warFile)
-            .as(WebArchive.class);
+        
+        //install PrimeFaces arquillian
+         EmbeddedMaven.forProject(new File(new File("").getAbsoluteFile().getParentFile().getAbsoluteFile().getAbsolutePath()+File.separator+"pom.xml"))
+                .useMaven3Version("3.3.9")
+                .setGoals("install")
+                .setQuiet()
+                .skipTests(true)
+                .ignoreFailure()
+                .build().getArchives();
+        
+        WebArchive webArchive = (WebArchive) EmbeddedMaven.forProject(new File("pom.xml"))
+                .useMaven3Version("3.3.9")
+                .setGoals("package")
+                .setQuiet()
+                .skipTests(true)
+                .ignoreFailure()
+                .build().getDefaultBuiltArchive();
+        
+        //System.out.println(webArchive.toString(true));
+        return webArchive;
     }
     
     @Test
