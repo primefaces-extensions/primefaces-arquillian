@@ -30,7 +30,7 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 
 public class ByParentPartialId extends By {
-    
+
     private String partialId;
     private boolean searchFromRoot;
 
@@ -99,7 +99,7 @@ public class ByParentPartialId extends By {
     }
 
     public static class ParentPartialIdLocationStrategy implements LocationStrategy {
-        
+
         @Override
         public ByParentPartialId fromAnnotation(Annotation annotation) {
             FindByParentPartialId findBy = (FindByParentPartialId) annotation;

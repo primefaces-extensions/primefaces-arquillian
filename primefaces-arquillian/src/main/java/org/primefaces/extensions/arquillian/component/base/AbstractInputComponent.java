@@ -19,7 +19,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public abstract class AbstractInputComponent extends AbstractComponent {
-    
+
     protected WebElement getInput() {
         return root;
     }

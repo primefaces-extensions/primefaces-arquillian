@@ -21,7 +21,7 @@ public abstract class AccordionPanel extends AbstractComponent {
 
     /**
      * Toggle the tab denoted by the specified index.
-     * 
+     *
      * @param index the index of the tab to expand
      */
     public void toggleTab(int index) {
@@ -40,7 +40,7 @@ public abstract class AccordionPanel extends AbstractComponent {
 
     /**
      * Provides the header of an {@link AccordionPanel} tab at the specified index.
-     * 
+     *
      * @param index the index
      * @return the header of the {@link AccordionPanel} tab
      */
@@ -50,7 +50,7 @@ public abstract class AccordionPanel extends AbstractComponent {
 
     /**
      * Provides the headers of the {@link AccordionPanel} tabs in their order.
-     * 
+     *
      * @return a copy of the headers in order
      */
     public List<String> getTabHeaders() {

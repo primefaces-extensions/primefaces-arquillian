@@ -26,7 +26,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class PrimeGraphene extends Graphene {
-    
+
     private PrimeGraphene() {
 
     }
@@ -67,9 +67,9 @@ public class PrimeGraphene extends Graphene {
         return false;
     }
 
-    
-    
-    
+
+
+
 
     public static boolean isAjaxScript(String script) {
         if (script == null || script.trim().isEmpty()) {
@@ -78,7 +78,7 @@ public class PrimeGraphene extends Graphene {
 
         return script.contains("PrimeFaces.ab(") || script.contains("pf.ab(") || script.contains("mojarra.ab(") || script.contains("jsf.ajax.request");
     }
-    
+
     public static boolean hasAjaxBehavior(WebElement element, String behavior) {
         if (!hasBehavior(element, behavior)) {
             return false;
@@ -111,13 +111,13 @@ public class PrimeGraphene extends Graphene {
         Object result = executeScript("return PrimeFaces.getWidgetById('" + id + "');");
         return result != null;
     }
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
     public static boolean isElementPresent(By by) {
         try {
             getWebDriver().findElement(by);

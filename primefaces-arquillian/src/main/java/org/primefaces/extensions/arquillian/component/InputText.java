@@ -24,11 +24,11 @@ import org.openqa.selenium.Keys;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 
 public abstract class InputText extends AbstractInputComponent {
-    
+
     protected boolean isOnchangeAjaxified() {
         return PrimeGraphene.isAjaxScript(getInput().getAttribute("onchange"));
     }
-    
+
     public String getValue() {
         return getInput().getAttribute("value");
     }
@@ -36,7 +36,7 @@ public abstract class InputText extends AbstractInputComponent {
     public void setValue(Serializable value) {
         getInput().clear();
         getInput().sendKeys(value.toString());
-        
+
         if (isOnchangeAjaxified()) {
             try {
                 Graphene.guardAjax(getInput()).sendKeys(Keys.TAB);

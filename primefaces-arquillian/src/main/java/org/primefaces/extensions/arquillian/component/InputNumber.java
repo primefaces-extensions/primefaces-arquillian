@@ -19,7 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
 public abstract class InputNumber extends InputText {
-    
+
     @FindByParentPartialId(value = "_input")
     private WebElement input;
 

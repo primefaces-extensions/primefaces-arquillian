@@ -24,7 +24,7 @@ import org.primefaces.extensions.arquillian.component.base.AbstractInputComponen
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
 public abstract class InputSwitch extends AbstractInputComponent {
-    
+
     @FindByParentPartialId(value = "_input")
     private WebElement input;
 

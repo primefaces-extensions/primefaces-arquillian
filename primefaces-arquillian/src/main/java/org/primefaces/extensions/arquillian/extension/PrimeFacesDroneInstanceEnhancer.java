@@ -24,7 +24,7 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
 import java.lang.annotation.Annotation;
 
 public class PrimeFacesDroneInstanceEnhancer implements DroneInstanceEnhancer<WebDriver> {
-    
+
     protected WebDriverEventListener listener;
 
     @Override

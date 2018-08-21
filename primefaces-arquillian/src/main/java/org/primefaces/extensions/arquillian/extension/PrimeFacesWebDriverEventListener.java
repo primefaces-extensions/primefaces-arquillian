@@ -20,7 +20,7 @@ import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 
 public class PrimeFacesWebDriverEventListener extends AbstractWebDriverEventListener {
-    
+
     @Override
     public void afterNavigateTo(String url, WebDriver driver) {
         PrimeGraphene.disableAnimations();

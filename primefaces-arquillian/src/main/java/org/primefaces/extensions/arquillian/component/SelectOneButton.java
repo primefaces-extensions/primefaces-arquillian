@@ -58,7 +58,7 @@ public abstract class SelectOneButton extends AbstractInputComponent {
 
         click(options.get(nextIndex));
     }
-    
+
     public void select(String label) {
         if (!isSelected(label)) {
             for (WebElement element : options) {

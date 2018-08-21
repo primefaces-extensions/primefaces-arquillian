@@ -24,7 +24,7 @@ import org.openqa.selenium.WebDriver;
 import java.net.URL;
 
 public abstract class AbstractPrimePage {
-    
+
     @Drone
     protected WebDriver webDriver;
 

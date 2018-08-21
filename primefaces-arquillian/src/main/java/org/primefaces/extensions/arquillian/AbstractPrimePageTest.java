@@ -29,7 +29,7 @@ import java.net.URL;
 @RunWith(Arquillian.class)
 @RunAsClient
 public abstract class AbstractPrimePageTest {
-    
+
     @Drone
     protected WebDriver webDriver;
 

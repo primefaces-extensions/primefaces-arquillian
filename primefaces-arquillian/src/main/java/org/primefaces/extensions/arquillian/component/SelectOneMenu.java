@@ -25,16 +25,16 @@ import org.primefaces.extensions.arquillian.component.base.AbstractInputComponen
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
 public abstract class SelectOneMenu extends AbstractInputComponent {
-    
+
     @FindByParentPartialId(value = "_label")
     private WebElement label;
-    
+
     @FindByParentPartialId(value = "_items", searchFromRoot = true)
     private WebElement items;
-    
+
     @FindByParentPartialId(value = "_input")
     private WebElement input;
-    
+
     @FindByParentPartialId(value = "_panel", searchFromRoot = true)
     private WebElement panel;
 

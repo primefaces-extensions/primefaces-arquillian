@@ -21,9 +21,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PrimeExpectedConditions {
-    
+
     private PrimeExpectedConditions() {
-        
+
     }
 
     public static ExpectedCondition<Boolean> jQueryNotActive() {

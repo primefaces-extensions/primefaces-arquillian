@@ -19,7 +19,7 @@ import org.jboss.arquillian.core.spi.LoadableExtension;
 import org.jboss.arquillian.drone.spi.DroneInstanceEnhancer;
 
 public class PrimeFacesLoadableExtension implements LoadableExtension {
-    
+
     @Override
     public void register(ExtensionBuilder extensionBuilder) {
         extensionBuilder.service(DroneInstanceEnhancer.class, PrimeFacesDroneInstanceEnhancer.class);

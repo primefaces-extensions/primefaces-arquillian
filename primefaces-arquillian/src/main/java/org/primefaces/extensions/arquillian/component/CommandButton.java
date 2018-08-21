@@ -22,7 +22,7 @@ import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 
 public abstract class CommandButton extends AbstractComponent {
-    
+
     @Override
     public void click() {
         Graphene.waitGui().until(ExpectedConditions.elementToBeClickable(root));
