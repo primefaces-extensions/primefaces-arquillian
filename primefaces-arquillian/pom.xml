@@ -4,7 +4,7 @@
 
     <groupId>org.primefaces.extensions</groupId>
     <artifactId>primefaces-arquillian</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>6.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
