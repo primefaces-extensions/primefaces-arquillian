@@ -19,6 +19,7 @@ import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.graphene.fragment.Root;
 import org.openqa.selenium.WebDriver;
+import org.primefaces.extensions.arquillian.PrimeGraphene;
 
 public abstract class AbstractComponent implements GrapheneElement {
 
@@ -34,5 +35,9 @@ public abstract class AbstractComponent implements GrapheneElement {
 
     public String getId() {
         return root.getAttribute("id");
+    }
+
+    protected String getWidgetByIdScript() {
+        return PrimeGraphene.getWidgetByIdScript(getId());
     }
 }

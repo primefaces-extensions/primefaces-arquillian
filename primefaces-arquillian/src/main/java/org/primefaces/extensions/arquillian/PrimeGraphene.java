@@ -87,8 +87,8 @@ public class PrimeGraphene extends Graphene {
         String id = element.getAttribute("id");
 
         // TODO 6.3
-        // Object result = executeScript("return PrimeFaces.getWidgetById('" + id + "').getBehavior('" + behavior + "');");
-        String result = executeScript("return PrimeFaces.getWidgetById('" + id + "').cfg.behaviors['" + behavior + "'].toString();");
+        // Object result = executeScript("return " + getWidgetByIdScript(id) + ".getBehavior('" + behavior + "');");
+        String result = executeScript("return " + getWidgetByIdScript(id) + ".cfg.behaviors['" + behavior + "'].toString();");
         return isAjaxScript(result);
     }
 
@@ -99,7 +99,7 @@ public class PrimeGraphene extends Graphene {
 
         String id = element.getAttribute("id");
 
-        return executeScript("return PrimeFaces.getWidgetById('" + id + "').hasBehavior('" + behavior + "');");
+        return executeScript("return " + getWidgetByIdScript(id) + ".hasBehavior('" + behavior + "');");
     }
 
     public static boolean isWidget(WebElement element) {
@@ -108,11 +108,13 @@ public class PrimeGraphene extends Graphene {
             return false;
         }
 
-        Object result = executeScript("return PrimeFaces.getWidgetById('" + id + "');");
+        Object result = executeScript("return " + getWidgetByIdScript(id) + ";");
         return result != null;
     }
 
-
+    public static String getWidgetByIdScript(String id) {
+        return "PrimeFaces.getWidgetById('" + id + "')";
+    }
 
 
 
