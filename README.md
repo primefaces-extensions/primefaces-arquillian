@@ -16,6 +16,7 @@ Currently only the following components are implemented:
 - Panel
 - SelectOneButton
 - SelectOneMenu
+- Slider
 
 Contributions are very welcome ;)
 
