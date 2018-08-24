@@ -5,7 +5,7 @@ PrimeFaces testing support based on Selenium, Arquillian, Arquillian Graphene an
 Only tested on PrimeFaces 6.2+.
 
 ### Status
-Currently only the following components are implemented:
+Currently only the following components are implemented (partially):
 - AccordionPanel
 - CommandButton
 - CommandLink
