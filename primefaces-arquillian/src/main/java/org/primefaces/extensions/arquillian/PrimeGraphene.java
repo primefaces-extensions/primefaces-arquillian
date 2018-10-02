@@ -32,11 +32,11 @@ public class PrimeGraphene extends Graphene {
     }
 
     public static void disableAnimations() {
-        executeScript("$(function() { $.fx.off = true; });");
+        executeScript("if (window.$) { $(function() { $.fx.off = true; }); }");
     }
 
     public static void enableAnimations() {
-        executeScript("$(function() { $.fx.off = false; });");
+        executeScript("if (window.$) { $(function() { $.fx.off = false; }); }");
     }
 
     public static void handleRequestGuardException(RequestGuardException e) {
