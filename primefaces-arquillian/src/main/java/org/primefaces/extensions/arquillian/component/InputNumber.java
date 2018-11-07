@@ -15,7 +15,12 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
+import java.io.Serializable;
+import org.jboss.arquillian.graphene.Graphene;
+import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.WebElement;
+import org.primefaces.extensions.arquillian.PrimeGraphene;
+import org.primefaces.extensions.arquillian.component.base.Script;
 import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
 public abstract class InputNumber extends InputText {
@@ -23,8 +28,34 @@ public abstract class InputNumber extends InputText {
     @FindByParentPartialId(value = "_input")
     private WebElement input;
 
+    @FindByParentPartialId(value = "_hinput")
+    private WebElement hiddenInput;
+
     @Override
     protected WebElement getInput() {
         return input;
+    }
+
+    protected WebElement getHiddenInput() {
+        return hiddenInput;
+    }
+
+    @Override
+    public void setValue(Serializable value) {
+        String script = getWidgetByIdScript() + ".setValue(" + value.toString() + ");";
+
+        if (isOnchangeAjaxified()) {
+            try {
+                Graphene.guardAjax((Script) () -> {
+                    PrimeGraphene.executeScript(script);
+                }).execute();
+            }
+            catch (RequestGuardException e) {
+                PrimeGraphene.handleRequestGuardException(e);
+            }
+        }
+        else {
+            PrimeGraphene.executeScript(script);
+        }
     }
 }
