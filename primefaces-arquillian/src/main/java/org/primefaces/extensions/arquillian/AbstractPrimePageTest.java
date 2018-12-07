@@ -15,6 +15,7 @@
  */
 package org.primefaces.extensions.arquillian;
 
+import java.net.MalformedURLException;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.junit.Arquillian;
@@ -25,6 +26,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.net.URL;
+import org.jboss.arquillian.graphene.page.Location;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -69,6 +71,44 @@ public abstract class AbstractPrimePageTest {
     protected void assertNotEnabled(WebElement element) {
         if (PrimeGraphene.isElementEnabled(element)) {
             Assert.fail("Element should not be enabled!");
+        }
+    }
+
+    protected void assertDisabled(WebElement element) {
+        if (PrimeGraphene.isElementEnabled(element)) {
+            Assert.fail("Element should be disabled!");
+        }
+    }
+
+    protected void assertNotDisabled(WebElement element) {
+        if (!PrimeGraphene.isElementEnabled(element)) {
+            Assert.fail("Element should not be disabled!");
+        }
+    }
+
+    protected void assertIsAt(AbstractPrimePage page) {
+        assertIsAt(page.getLocation());
+    }
+
+    protected void assertIsAt(Class<?> pageClass) {
+        Location location = pageClass.getAnnotation(Location.class);
+        if (location == null) {
+            Assert.fail("Class doesn't have " + Location.class.getName() + " annotation");
+            return;
+        }
+
+        assertIsAt(location.value());
+    }
+
+    protected void assertIsAt(String relativePath) {
+        String fullPath = contextPath.getPath() + relativePath;
+
+        try {
+            URL url = new URL(webDriver.getCurrentUrl());
+            Assert.assertEquals(fullPath, url.getPath());
+        }
+        catch (MalformedURLException e) {
+            throw new RuntimeException("Malformed url: " + webDriver.getCurrentUrl(), e);
         }
     }
 }
