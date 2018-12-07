@@ -54,6 +54,11 @@ public class IndexPage extends AbstractPrimePage {
 
 Example test:
 ```java
+import org.primefaces.extensions.arquillian.AbstractPrimePageTest;
+import org.jboss.arquillian.graphene.page.InitialPage;
+import org.junit.Assert;
+import org.junit.Test;
+
 public abstract class IndexPageTest extends AbstractPrimePageTest {
 
     // force new session after each test
