@@ -7,6 +7,7 @@ Only tested on PrimeFaces 6.2+.
 ### Status
 Currently only the following components are implemented (partially):
 - AccordionPanel
+- Calendar
 - CommandButton
 - CommandLink
 - InputNumber
@@ -14,6 +15,8 @@ Currently only the following components are implemented (partially):
 - InputText
 - InputTextarea
 - Panel
+- SelectOneButton
+- SelectBooleanCheckbox
 - SelectOneButton
 - SelectOneMenu
 - Slider
