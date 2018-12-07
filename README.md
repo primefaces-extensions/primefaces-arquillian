@@ -54,13 +54,23 @@ public class IndexPage extends AbstractPrimePage {
 
 Example test:
 ```java
+public abstract class IndexPageTest extends AbstractPrimePageTest {
+
+    // force new session after each test
+    @After
+    public void after() {
+        webDriver.manage().deleteAllCookies();
+    }
+
     @Test
     public void myFirstTest(@InitialPage IndexPage index) throws InterruptedException {
         assertDisplayed(index.getManufacturer());
+        assertEnabled(index.getManufacturer());
 
         index.getManufacturer().select("BMW");
         Assert.assertTrue(index.getManufacturer().isSelected("BMW"));
     }
+}
 ```
 
 ### Build & Run
