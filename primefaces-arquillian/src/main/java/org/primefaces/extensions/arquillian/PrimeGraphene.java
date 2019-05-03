@@ -201,8 +201,9 @@ public class PrimeGraphene extends Graphene {
                 catch (Throwable e) {
                     if (e instanceof RequestGuardException) {
                         PrimeGraphene.handleRequestGuardException((RequestGuardException) e);
+                        return null;
                     }
-                    return null;
+                    throw e;
                 }
             }
 
