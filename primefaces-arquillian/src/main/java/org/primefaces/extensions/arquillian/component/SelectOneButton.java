@@ -15,8 +15,6 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
-import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
@@ -70,6 +68,14 @@ public abstract class SelectOneButton extends AbstractInputComponent {
     }
 
     public void deselect(String label) {
+        deselect(label, false);
+    }
+
+    public void deselect(String label, boolean ignoreDeselectable) {
+        if (!ignoreDeselectable && !isUnselectable()) {
+            return;
+        }
+
         if (isSelected(label)) {
             for (WebElement element : options) {
                 if (element.getText().equalsIgnoreCase(label)) {
@@ -79,14 +85,13 @@ public abstract class SelectOneButton extends AbstractInputComponent {
         }
     }
 
+    public boolean isUnselectable() {
+        return "true".equals(PrimeGraphene.executeScript("return " + getWidgetByIdScript() + ".cfg.unselectable"));
+    }
+
     protected void click(WebElement element) {
         if (PrimeGraphene.hasAjaxBehavior(root, "change") || PrimeGraphene.hasAjaxBehavior(root, "onchange")) {
-            try {
-                Graphene.guardAjax(element).click();
-            }
-            catch (RequestGuardException e) {
-                PrimeGraphene.handleRequestGuardException(e);
-            }
+            PrimeGraphene.guardAjaxSilently(element).click();
         }
         else {
             element.click();

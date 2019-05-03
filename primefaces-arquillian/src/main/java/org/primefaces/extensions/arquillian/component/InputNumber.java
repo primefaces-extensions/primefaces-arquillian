@@ -16,8 +16,6 @@
 package org.primefaces.extensions.arquillian.component;
 
 import java.io.Serializable;
-import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.WebElement;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.Script;
@@ -45,14 +43,9 @@ public abstract class InputNumber extends InputText {
         String script = getWidgetByIdScript() + ".setValue(" + value.toString() + ");";
 
         if (isOnchangeAjaxified()) {
-            try {
-                Graphene.guardAjax((Script) () -> {
-                    PrimeGraphene.executeScript(script);
-                }).execute();
-            }
-            catch (RequestGuardException e) {
-                PrimeGraphene.handleRequestGuardException(e);
-            }
+            PrimeGraphene.guardAjaxSilently((Script) () -> {
+                PrimeGraphene.executeScript(script);
+            }).execute();
         }
         else {
             PrimeGraphene.executeScript(script);

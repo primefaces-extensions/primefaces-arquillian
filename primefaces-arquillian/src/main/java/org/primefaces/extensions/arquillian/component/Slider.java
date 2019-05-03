@@ -15,7 +15,6 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
-import org.jboss.arquillian.graphene.Graphene;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractInputComponent;
 import org.primefaces.extensions.arquillian.component.base.Script;
@@ -31,7 +30,7 @@ public abstract class Slider extends AbstractInputComponent {
         PrimeGraphene.executeScript(getWidgetByIdScript() + ".onSlide(null, { value: " + value + " });");
 
         if (PrimeGraphene.hasAjaxBehavior(root, "slideEnd")) {
-            Graphene.guardAjax((Script) () -> {
+            PrimeGraphene.guardAjaxSilently((Script) () -> {
                 PrimeGraphene.executeScript(getWidgetByIdScript() + ".onSlideEnd(null, { value: " + value + " });");
             }).execute();
         }

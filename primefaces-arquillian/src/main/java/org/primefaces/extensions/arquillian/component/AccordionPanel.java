@@ -15,9 +15,7 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
-import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.GrapheneElement;
-import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
@@ -41,12 +39,7 @@ public abstract class AccordionPanel extends AbstractComponent {
      */
     public void toggleTab(int index) {
         if (PrimeGraphene.hasAjaxBehavior(root, "tabChange")) {
-            try {
-                Graphene.guardAjax(headers.get(index)).click();
-            }
-            catch (RequestGuardException e) {
-                PrimeGraphene.handleRequestGuardException(e);
-            }
+            PrimeGraphene.guardAjaxSilently(headers.get(index)).click();
         }
         else {
             headers.get(index).click();

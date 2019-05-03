@@ -15,8 +15,6 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
-import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.WebElement;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractInputComponent;
@@ -30,12 +28,7 @@ public abstract class SelectBooleanCheckbox extends AbstractInputComponent {
     @Override
     public void click() {
         if (PrimeGraphene.isAjaxScript(input.getAttribute("onchange"))) {
-            try {
-                Graphene.guardAjax(root).click();
-            }
-            catch (RequestGuardException e) {
-                PrimeGraphene.handleRequestGuardException(e);
-            }
+            PrimeGraphene.guardAjaxSilently(root).click();
         }
         else {
             root.click();

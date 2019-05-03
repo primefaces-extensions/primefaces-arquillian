@@ -16,7 +16,6 @@
 package org.primefaces.extensions.arquillian.component;
 
 import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
@@ -33,12 +32,7 @@ public abstract class InputSwitch extends AbstractInputComponent {
         Graphene.waitGui().until(ExpectedConditions.elementToBeClickable(root));
 
         if (PrimeGraphene.isAjaxScript(root.getAttribute("onchange"))) {
-            try {
-                Graphene.guardAjax(root).click();
-            }
-            catch (RequestGuardException e) {
-                PrimeGraphene.handleRequestGuardException(e);
-            }
+            PrimeGraphene.guardAjaxSilently(root).click();
         }
         else {
             root.click();

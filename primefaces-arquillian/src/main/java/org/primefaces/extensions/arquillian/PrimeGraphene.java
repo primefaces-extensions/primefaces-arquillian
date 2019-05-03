@@ -18,6 +18,9 @@ package org.primefaces.extensions.arquillian;
 import org.jboss.arquillian.drone.api.annotation.Default;
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.context.GrapheneContext;
+import org.jboss.arquillian.graphene.proxy.GrapheneProxyInstance;
+import org.jboss.arquillian.graphene.proxy.Interceptor;
+import org.jboss.arquillian.graphene.proxy.InvocationContext;
 import org.jboss.arquillian.graphene.request.RequestGuardException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -176,4 +179,37 @@ public class PrimeGraphene extends Graphene {
         }
     }
 
+    public static <T> T guardHttpSilently(T target) {
+        GrapheneProxyInstance proxy = (GrapheneProxyInstance) Graphene.guardHttp(target);
+        registerSilentInterceptor(proxy);
+        return (T) proxy;
+    }
+
+    public static <T> T guardAjaxSilently(T target) {
+        GrapheneProxyInstance proxy = (GrapheneProxyInstance) Graphene.guardAjax(target);
+        registerSilentInterceptor(proxy);
+        return (T) proxy;
+    }
+
+    private static void registerSilentInterceptor(GrapheneProxyInstance proxy) {
+        proxy.registerInterceptor(new Interceptor() {
+            @Override
+            public Object intercept(InvocationContext context) throws Throwable {
+                try {
+                    return context.invoke();
+                }
+                catch (Throwable e) {
+                    if (e instanceof RequestGuardException) {
+                        PrimeGraphene.handleRequestGuardException((RequestGuardException) e);
+                    }
+                    return null;
+                }
+            }
+
+            @Override
+            public int getPrecedence() {
+                return 1;
+            }
+        });
+    }
 }

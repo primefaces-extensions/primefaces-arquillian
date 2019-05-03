@@ -15,8 +15,8 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
-import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.request.RequestGuardException;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.primefaces.extensions.arquillian.PrimeExpectedConditions;
@@ -99,6 +99,28 @@ public abstract class SelectOneMenu extends AbstractInputComponent {
         return getSelectedLabel().equalsIgnoreCase(label);
     }
 
+    public List<String> getLabels() {
+        return getInput().findElements(By.tagName("option")).stream()
+            .map(WebElement::getText)
+            .collect(Collectors.toList());
+    }
+
+    public void select(int index) {
+        select(getLabel(index));
+    }
+
+    public void deselect(int index) {
+        deselect(getLabel(index));
+    }
+
+    public boolean isSelected(int index) {
+        return getLabel(index).equals(getSelectedLabel());
+    }
+
+    public String getLabel(int index) {
+        return getLabels().get(index);
+    }
+
     @Override
     protected WebElement getInput() {
         return input;
@@ -106,12 +128,7 @@ public abstract class SelectOneMenu extends AbstractInputComponent {
 
     protected void click(WebElement element) {
         if (PrimeGraphene.isAjaxScript(input.getAttribute("onchange"))) {
-            try {
-                Graphene.guardAjax(element).click();
-            }
-            catch (RequestGuardException e) {
-                PrimeGraphene.handleRequestGuardException(e);
-            }
+            PrimeGraphene.guardAjaxSilently(element).click();
         }
         else {
             element.click();
