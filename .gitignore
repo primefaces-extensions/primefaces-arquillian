@@ -1,2 +1,3 @@
 # Maven build results
-/target/
+/primefaces-arquillian-example/target/
+/primefaces-arquillian/target/
