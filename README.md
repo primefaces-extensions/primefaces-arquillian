@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/primefaces-extensions/primefaces-arquillian.svg?branch=master)](https://travis-ci.org/primefaces-extensions/primefaces-arquillian)
+
 # primefaces-arquillian
 PrimeFaces testing support based on Selenium, Arquillian, Arquillian Graphene and the concept of page ojects / fragements.
 
