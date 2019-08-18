@@ -40,7 +40,6 @@ public abstract class Calendar extends AbstractInputComponent {
         return LocalDateTime.parse(utcTimeString, DateTimeFormatter.RFC_1123_DATE_TIME).minusMinutes(timeZoneOffset);
     }
 
-    @SuppressWarnings("PMD.ConfusingTernary")
     public void setValue(LocalDateTime dateTime) {
         String jsDate = dateTime != null ? "new Date('" + dateTime.toString() + "')" : "null";
         PrimeGraphene.executeScript(getWidgetByIdScript() + ".setDate(" + jsDate + ");");

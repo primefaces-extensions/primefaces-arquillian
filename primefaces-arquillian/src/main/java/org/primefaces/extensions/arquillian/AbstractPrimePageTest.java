@@ -30,7 +30,6 @@ import org.jboss.arquillian.graphene.page.Location;
 
 @RunWith(Arquillian.class)
 @RunAsClient
-@SuppressWarnings("PMD.TooManyMethods")
 public abstract class AbstractPrimePageTest {
 
     @Drone
