@@ -41,6 +41,7 @@ public abstract class SelectBooleanCheckbox extends AbstractInputComponent {
         }
     }
 
+    @SuppressWarnings("PMD.BooleanGetMethodName")
     public boolean getValue() {
         return input.getAttribute("checked") != null;
     }
