@@ -15,16 +15,21 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
-import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.request.RequestGuardException;
+import java.time.LocalDate;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractInputComponent;
-import org.primefaces.extensions.arquillian.component.base.Script;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import org.jboss.arquillian.graphene.GrapheneElement;
+import org.openqa.selenium.Keys;
+import org.primefaces.extensions.arquillian.extension.findby.FindByParentPartialId;
 
 public abstract class Calendar extends AbstractInputComponent {
+
+    @FindByParentPartialId("_input")
+    private GrapheneElement input;
 
     public LocalDateTime getValue() {
         Object date = PrimeGraphene.executeScript("return " + getWidgetByIdScript() + ".getDate()");
@@ -40,22 +45,49 @@ public abstract class Calendar extends AbstractInputComponent {
         return LocalDateTime.parse(utcTimeString, DateTimeFormatter.RFC_1123_DATE_TIME).minusMinutes(timeZoneOffset);
     }
 
-    public void setValue(LocalDateTime dateTime) {
-        String jsDate = dateTime != null ? "new Date('" + dateTime.toString() + "')" : "null";
-        PrimeGraphene.executeScript(getWidgetByIdScript() + ".setDate(" + jsDate + ");");
+    public void setValue(LocalDate localDate) {
+        setValue(localDate.atStartOfDay());
+    }
 
-        Script fireDateSelectEventScript = () -> PrimeGraphene.executeScript(getWidgetByIdScript() + ".fireDateSelectEvent();");
+    public void setValue(LocalDateTime dateTime) {
+        int timezoneOffset = (int) getTimezoneOffset();
+        int timezoneOffsetHours = timezoneOffset / 60;
+        int timezoneOffsetMinutes = timezoneOffset % 60;
+
+        ZoneOffset zoneOffset = ZoneOffset.ofHoursMinutes(timezoneOffsetHours, timezoneOffsetMinutes);
+
+        long millis = dateTime.atOffset(zoneOffset).toInstant().toEpochMilli();
+
+        setValue(millis);
+    }
+
+    public void setValue(long millis) {
+        String formattedDate = millisAsFormattedDate(millis);
+
+        // Emulate user input instead of using js, calendar.setDate() can't go beyond mindate/maxdate
+        getInput().sendKeys(Keys.chord(Keys.CONTROL, "a")); // select everything
+        getInput().sendKeys(Keys.DELETE); // delete
+        getInput().sendKeys(formattedDate);
 
         if (PrimeGraphene.hasAjaxBehavior(root, "dateSelect")) {
-            try {
-                Graphene.guardAjax(fireDateSelectEventScript).execute();
-            }
-            catch (RequestGuardException e) {
-                PrimeGraphene.handleRequestGuardException(e);
-            }
+            PrimeGraphene.guardAjaxSilently(getInput()).sendKeys(Keys.TAB);
         }
         else {
-            fireDateSelectEventScript.execute();
+            getInput().sendKeys(Keys.TAB);
         }
+    }
+
+    public String millisAsFormattedDate(long millis) {
+        return PrimeGraphene.executeScript(
+            "return $.datepicker.formatDate(" + getWidgetByIdScript() + ".cfg.dateFormat, new Date(" + millis + "));");
+    }
+
+    public long getTimezoneOffset() {
+        return (Long) PrimeGraphene.executeScript("return new Date().getTimezoneOffset();");
+    }
+
+    @Override
+    public GrapheneElement getInput() {
+        return input;
     }
 }
