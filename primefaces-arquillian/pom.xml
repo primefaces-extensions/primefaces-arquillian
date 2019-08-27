@@ -20,6 +20,51 @@
         <junit.version>4.12</junit.version>
         <selenium.version>3.13.0</selenium.version>
     </properties>
+    
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/primefaces-extensions/primefaces-extensions.github.com/issues</url>
+    </issueManagement>
+    
+    <scm>
+        <connection>scm:git:git@github.com:primefaces-extensions/primefaces-arquillian.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:primefaces-extensions/primefaces-arquillian.git</developerConnection>
+        <url>https://github.com/primefaces-extensions/primefaces-arquillian</url>
+        <tag>HEAD</tag>
+    </scm>
+    
+    <developers>
+        <developer>
+            <id>tandraschko</id>
+            <name>Thomas Andraschko</name>
+            <email>andraschko.thomas@gmail.com</email>
+            <roles>
+                <role>Owner</role>
+                <role>Buildmaster</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+        <developer>
+            <id>melloware</id>
+            <name>Emil Lefkof</name>
+            <email>mellowaredev@gmail.com</email>
+            <roles>
+                <role>Buildmaster</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>America/New_York</timezone>
+        </developer>
+    </developers>
 
     <build>
         <pluginManagement>
