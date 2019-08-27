@@ -17,6 +17,10 @@
         <exclude name="MethodArgumentCouldBeFinal"/>
         <exclude name="OnlyOneReturn"/>
         <exclude name="ConfusingTernary"/>
+        <exclude name="ShortClassName" />
+        <exclude name="UselessParentheses" />
+        <exclude name="SimplifyStartsWith" />
+        <exclude name="AvoidLiteralsInIfCondition" />
     </rule>
     <rule ref="category/java/codestyle.xml/LongVariable">
         <properties>
