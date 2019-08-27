@@ -9,6 +9,7 @@
     <rule ref="category/java/bestpractices.xml">
         <exclude name="AbstractClassWithoutAbstractMethod"/>
         <exclude name="SystemPrintln"/>
+        <exclude name="AvoidReassigningParameters" />
     </rule>
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor"/>
@@ -19,8 +20,6 @@
         <exclude name="ConfusingTernary"/>
         <exclude name="ShortClassName" />
         <exclude name="UselessParentheses" />
-        <exclude name="SimplifyStartsWith" />
-        <exclude name="AvoidLiteralsInIfCondition" />
     </rule>
     <rule ref="category/java/codestyle.xml/LongVariable">
         <properties>
@@ -43,6 +42,7 @@
         <exclude name="LawOfDemeter"/>
         <exclude name="TooManyFields" />
         <exclude name="TooManyMethods" />
+        <exclude name="DataClass" />
     </rule>
     <rule ref="category/java/documentation.xml">
         <exclude name="UncommentedEmptyConstructor"/>
@@ -53,6 +53,8 @@
         <exclude name="BeanMembersShouldSerialize"/>
         <exclude name="DataflowAnomalyAnalysis"/>
         <exclude name="NullAssignment"/>
+        <exclude name="AvoidLiteralsInIfCondition" />
+        <exclude name="EmptyCatchBlock" />
     </rule>
     <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
         <properties>
@@ -64,5 +66,7 @@
     </rule>
     <rule ref="category/java/performance.xml">
         <exclude name="UseStringBufferForStringAppends" />
+        <exclude name="SimplifyStartsWith" />
+        <exclude name="AvoidInstantiatingObjectsInLoops" />
     </rule>
 </ruleset>
