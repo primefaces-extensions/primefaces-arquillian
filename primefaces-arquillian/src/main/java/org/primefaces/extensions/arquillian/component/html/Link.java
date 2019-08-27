@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.primefaces.extensions.arquillian.component;
+package org.primefaces.extensions.arquillian.component.html;
 
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractComponent;

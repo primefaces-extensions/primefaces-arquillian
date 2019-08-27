@@ -15,6 +15,7 @@
  */
 package org.primefaces.extensions.arquillian.component;
 
+import org.primefaces.extensions.arquillian.component.html.Link;
 import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
