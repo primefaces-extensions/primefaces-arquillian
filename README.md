@@ -8,6 +8,11 @@ Only tested on PrimeFaces 6.2+.
 
 ### Status
 Currently only the following components are implemented (partially):
+
+#### HTML
+- Link
+
+#### JSF / PrimeFaces
 - AccordionPanel
 - Calendar
 - CommandButton
