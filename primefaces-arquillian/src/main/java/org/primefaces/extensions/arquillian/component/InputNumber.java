@@ -40,15 +40,18 @@ public abstract class InputNumber extends InputText {
 
     @Override
     public void setValue(Serializable value) {
-        String script = getWidgetByIdScript() + ".setValue(" + value.toString() + ");";
+        if (value == null) {
+            value = "\"\"";
+        }
 
-        if (isOnchangeAjaxified()) {
-            PrimeGraphene.guardAjaxSilently((Script) () -> {
-                PrimeGraphene.executeScript(script);
-            }).execute();
-        }
-        else {
-            PrimeGraphene.executeScript(script);
-        }
+        PrimeGraphene.executeScript(getWidgetByIdScript() + ".setValue(" + value.toString() + ")");
+
+        Script changeTriggerScript = () -> PrimeGraphene.executeScript(getWidgetByIdScript() + ".input.change()");
+        changeTriggerScript = isOnchangeAjaxified() ? PrimeGraphene.guardAjaxSilently(changeTriggerScript) : changeTriggerScript;
+        changeTriggerScript.execute();
+    }
+
+    public Double getValueToRender() {
+        return Double.valueOf(PrimeGraphene.executeScript("return " + getWidgetByIdScript() + ".valueToRender;"));
     }
 }
