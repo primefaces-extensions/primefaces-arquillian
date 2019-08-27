@@ -86,9 +86,7 @@ public final class PrimeGraphene extends Graphene {
 
         String id = element.getAttribute("id");
 
-        // TODO 6.3
-        // Object result = executeScript("return " + getWidgetByIdScript(id) + ".getBehavior('" + behavior + "');");
-        String result = executeScript("return " + getWidgetByIdScript(id) + ".cfg.behaviors['" + behavior + "'].toString();");
+        String result = executeScript("return " + getWidgetByIdScript(id) + ".getBehavior('" + behavior + "').toString();");
         return isAjaxScript(result);
     }
 

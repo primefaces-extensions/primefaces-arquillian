@@ -4,7 +4,7 @@
 
     <groupId>org.primefaces.extensions</groupId>
     <artifactId>primefaces-arquillian</artifactId>
-    <version>6.2.1-SNAPSHOT</version>
+    <version>7.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -22,6 +22,7 @@
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>3.10.0</version>
                     <dependencies>
+                        <!-- this allows to control the PMD version used by maven-pmd-plugin -->
                         <dependency>
                             <groupId>net.sourceforge.pmd</groupId>
                             <artifactId>pmd-core</artifactId>
@@ -43,8 +44,6 @@
                             <version>${pmd.version}</version>
                         </dependency>
                     </dependencies>
-                        <!-- this allows to control the PMD version used by
-                            maven-pmd-plugin -->
                 </plugin>
             </plugins>
         </pluginManagement>
