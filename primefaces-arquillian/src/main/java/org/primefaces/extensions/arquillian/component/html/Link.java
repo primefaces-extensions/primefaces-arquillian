@@ -18,8 +18,8 @@ package org.primefaces.extensions.arquillian.component.html;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
 import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 
-public abstract class Link extends AbstractComponent
-{
+public abstract class Link extends AbstractComponent {
+
     @Override
     public void click() {
         String href = getHref();
