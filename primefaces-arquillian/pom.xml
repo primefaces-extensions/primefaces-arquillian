@@ -4,7 +4,7 @@
 
     <groupId>org.primefaces.extensions</groupId>
     <artifactId>primefaces-arquillian</artifactId>
-    <version>7.0.0-SNAPSHOT</version>
+    <version>7.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>PrimeFaces Arquillian</name>
     <description>
@@ -25,7 +25,7 @@
         <junit.version>4.12</junit.version>
         <selenium.version>3.13.0</selenium.version>
     </properties>
-    
+
     <licenses>
         <license>
             <name>Apache 2</name>
@@ -34,19 +34,19 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
-    
+
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/primefaces-extensions/primefaces-extensions.github.com/issues</url>
     </issueManagement>
-    
+
     <scm>
         <connection>scm:git:git@github.com:primefaces-extensions/primefaces-arquillian.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:primefaces-extensions/primefaces-arquillian.git</developerConnection>
         <url>https://github.com/primefaces-extensions/primefaces-arquillian</url>
         <tag>HEAD</tag>
     </scm>
-    
+
     <developers>
         <developer>
             <id>tandraschko</id>
@@ -201,6 +201,20 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.8.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
