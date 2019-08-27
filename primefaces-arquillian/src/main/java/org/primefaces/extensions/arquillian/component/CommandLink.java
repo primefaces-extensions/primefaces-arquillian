@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2018 PrimeFaces Extensions
+ * Copyright 2011-2019 PrimeFaces Extensions
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,8 @@ package org.primefaces.extensions.arquillian.component;
 import org.jboss.arquillian.graphene.Graphene;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.primefaces.extensions.arquillian.PrimeGraphene;
-import org.primefaces.extensions.arquillian.component.base.AbstractComponent;
 
-public abstract class CommandLink extends AbstractComponent {
+public abstract class CommandLink extends Link {
 
     @Override
     public void click() {
