@@ -21,6 +21,7 @@ Currently only the following components are implemented (partially):
 - InputSwitch
 - InputText
 - InputTextarea
+- Messages
 - Panel
 - SelectOneButton
 - SelectBooleanCheckbox
