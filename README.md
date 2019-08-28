@@ -8,7 +8,7 @@
 PrimeFaces testing support based on Selenium, Arquillian, Arquillian Graphene and the concept of page ojects / fragements.
 
 ### Compatibility
-Only tested on PrimeFaces 6.2+.
+Only tested on PrimeFaces 7.0+.
 
 ### Status
 Currently only the following components are implemented (partially):
