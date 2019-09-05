@@ -101,7 +101,7 @@ public abstract class SelectOneMenu extends AbstractInputComponent {
 
     public List<String> getLabels() {
         return getInput().findElements(By.tagName("option")).stream()
-            .map(WebElement::getText)
+            .map(e -> e.getAttribute("innerHTML"))
             .collect(Collectors.toList());
     }
 
