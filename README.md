@@ -29,8 +29,10 @@ Currently only the following components are implemented (partially):
 - Panel
 - SelectOneButton
 - SelectBooleanCheckbox
+- SelectManyCheckbox
 - SelectOneButton
 - SelectOneMenu
+- SelectOneRadio
 - Slider
 
 Contributions are very welcome ;)
