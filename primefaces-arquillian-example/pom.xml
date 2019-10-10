@@ -29,13 +29,13 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>6.2</version>
+            <version>7.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-arquillian</artifactId>
-            <version>6.2.1-SNAPSHOT</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
