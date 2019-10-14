@@ -36,12 +36,13 @@ public abstract class SelectOneRadio extends AbstractComponent {
         WebElement radiobutton = radiobuttons.get(index);
         PrimeGraphene.waitGui().until(PrimeExpectedConditions.visibileAndAnimationComplete(radiobutton));
 
+        WebElement box = radiobutton.findElement(By.className("ui-radiobutton-box"));
         WebElement input = radiobutton.findElement(By.tagName("input"));
         if (PrimeGraphene.isAjaxScript(input.getAttribute("onchange"))) {
-            PrimeGraphene.guardAjaxSilently(radiobutton).click();
+            PrimeGraphene.guardAjaxSilently(box).click();
         }
         else {
-            radiobutton.click();
+            box.click();
         }
     }
 
