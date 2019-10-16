@@ -16,6 +16,7 @@
 package org.primefaces.extensions.arquillian;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,5 +41,28 @@ public final class PrimeExpectedConditions {
         return ExpectedConditions.and(
                 jQueryNotActive(),
                 ExpectedConditions.invisibilityOf(element));
+    }
+
+    public static ExpectedCondition<Boolean> visibleInViewport(WebElement element) {
+        return new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver webDriver) {
+                return (Boolean) PrimeGraphene.executeScript(
+                        "var elem = arguments[0],"
+                        + "    box = elem.getBoundingClientRect(),"
+                        + "    cx = box.left + box.width / 2,"
+                        + "    cy = box.top + box.height / 2,"
+                        + "    e = document.elementFromPoint(cx, cy);"
+                        + "for (; e; e = e.parentElement) {"
+                        + "    if (e === elem) { return true; }"
+                        + "}"
+                        + "return false;", element);
+            }
+
+            @Override
+            public String toString() {
+                return "is " + element + " visible in viewport";
+            }
+        };
     }
 }

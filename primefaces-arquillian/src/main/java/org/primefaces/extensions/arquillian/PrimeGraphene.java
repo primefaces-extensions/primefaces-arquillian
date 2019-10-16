@@ -51,9 +51,9 @@ public final class PrimeGraphene extends Graphene {
         return GrapheneContext.getContextFor(Default.class).getWebDriver();
     }
 
-    public static <T> T executeScript(String script) {
+    public static <T> T executeScript(String script, Object... args) {
         JavascriptExecutor executor = (JavascriptExecutor) getWebDriver();
-        return (T) executor.executeScript(script);
+        return (T) executor.executeScript(script, args);
     }
 
     public static boolean hasCssClass(WebElement element, String cssClass) {
