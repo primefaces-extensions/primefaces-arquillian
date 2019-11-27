@@ -1,3 +1,6 @@
+DEPRECATED!!!! It has been replaced by: https://github.com/primefaces-extensions/primefaces-selenium
+
+
 [![Maven](https://img.shields.io/maven-central/v/org.primefaces.extensions/primefaces-arquillian.svg)](http://repo1.maven.org/maven2/org/primefaces/extensions/primefaces-arquillian/)
 [![Javadocs](http://javadoc.io/badge/org.primefaces.extensions/primefaces-arquillian.svg)](http://javadoc.io/doc/org.primefaces.extensions/primefaces-extensions)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
